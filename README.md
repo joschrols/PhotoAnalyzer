@@ -47,4 +47,4 @@ The Photo Analyzer App was developed by [Joshua Olson](https://github.com/joschr
 
 ## Contact
 
-For questions, suggestions, or collaborations, feel free to contact us at joschrfraols@gmail.com.# PhotoAnalyzer
+For questions, suggestions, or collaborations, feel free to contact us at joschrfraols@gmail.com.
