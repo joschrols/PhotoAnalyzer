@@ -237,6 +237,11 @@ class PhotoAnalyzerApp:
 
     # HELP MENU COMMANDS
 
+    def open_github_repo(self):
+        # Open the GitHub repository for this project
+        github_repo_url = "https://github.com/joschrols/PhotoAnalyzer"
+        webbrowser.open_new(github_repo_url)
+
     def help(self):
         # Get the absolute path to the user_manual.md file
         user_manual_path = os.path.abspath("C:\\Users\\Josh\\Documents\\PhotoAnalyzer\\docs\\user_manual.md")
@@ -265,12 +270,16 @@ class PhotoAnalyzerApp:
 
         # Create a link to open the user manual in the default web browser
         def open_in_browser(event):
-            webbrowser.open(user_manual_path)
+            try:
+                webbrowser.open(user_manual_path)
+            except FileNotFoundError:
+                # If the file is not found, open the user_manual.md file in the GitHub repository instead
+                webbrowser.open("https://github.com/joschrols/PhotoAnalyzer/blob/main/docs/user_manual.md")
 
         link_label = tk.Label(help_window, text="Open in Browser", cursor="hand2", fg="blue")
         link_label.pack(pady=5)
         link_label.bind("<Button-1>", open_in_browser)
-
+        
     # TOOLBAR COMMANDS
 
     def selectLineTool(self):
@@ -432,6 +441,7 @@ class PhotoAnalyzerApp:
         # Help menu
         helpmenu = tk.Menu(self.menubar, tearoff=0)
         helpmenu.add_command(label="Help", command=self.help)
+        helpmenu.add_command(label="GitHub Repository", command=self.open_github_repo)
         self.menubar.add_cascade(label="Help", menu=helpmenu)
 
         self.window.config(menu=self.menubar)
